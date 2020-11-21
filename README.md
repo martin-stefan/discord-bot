@@ -1,1 +1,1 @@
-# discord-bot
+practicing making a discord bot
