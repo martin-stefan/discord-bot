@@ -1,0 +1,22 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "practicing making a discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martin-stefan/discord-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martin-stefan/discord-bot/issues"
+  },
+  "homepage": "https://github.com/martin-stefan/discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.4.1"
+  }
+}
