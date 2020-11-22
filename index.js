@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const config = require('./config.json');
+const {prefix, token }= require('./config.json');
 const bot = new Discord.Client();
 
 bot.once('ready', () => {
@@ -8,7 +8,7 @@ bot.once('ready', () => {
 
 bot.on('message', msg => {
 
-  if (!msg.content.startsWith(config.prefix) || msg.author.bot) return;
+  if (!msg.content.startsWith(prefix) || msg.author.bot) return;
 
   const words = msg.content.slice(prefix.length).split(/ +/);
   const command = words.shift().toLowerCase();
@@ -21,4 +21,4 @@ bot.on('message', msg => {
   }
 });
 
-bot.login(config.token);
+bot.login(token);
