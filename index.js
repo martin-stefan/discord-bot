@@ -1,25 +1,35 @@
+const fs = require('fs');
 const Discord = require('discord.js');
 const {prefix, token }= require('./config.json');
+
 const bot = new Discord.Client();
+bot.commands = new Discord.Collection()
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 bot.once('ready', () => {
   console.log('Bot is live')
 })
 
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  bot.commands.set(command.name, command)
+}
+
 bot.on('message', msg => {
-
   if (!msg.content.startsWith(prefix) || msg.author.bot) return;
-
+  
   const args = msg.content.slice(prefix.length).trim().split(/ +/);
-  const command = args.shift().toLowerCase();
+  const commandName = args.shift().toLowerCase();
 
-  if (command === '') {
-    msg.reply('');
+  if (!bot.commands.has(commandName)) return;
+  const command = bot.commands.get(commandName);
 
-  } else if (command === 'ping') {
-    msg.channel.send('pong');
-  } else if (command == 'id') {
-    msg.channel.send(`Your id is: ${msg.author.id}`);
+  try {
+    command.execute(msg, args);
+  } catch (error) {
+    console.error(error);
+    msg.channel.send('Not a valid command');
   }
 });
 
