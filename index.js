@@ -16,8 +16,11 @@ for (const file of commandFiles) {
   bot.commands.set(command.name, command)
 }
 
+
+
+
 bot.on('message', msg => {
-  if (!msg.content.startsWith(prefix) || msg.author.bot) return;
+  if (!msg.content.startsWith(prefix) || msg.author.bot || msg.channel.type === 'dm') return;
   
   const args = msg.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
