@@ -6,7 +6,7 @@ module.exports = {
 	aliases: ['commands'],
   usage: '[command name]',
 	cooldown: 5,
-	execute(message, args) {
-		// ...
+	execute(msg, args) {
+		msg.channel.send('you dont get to know');
 	},
 };
